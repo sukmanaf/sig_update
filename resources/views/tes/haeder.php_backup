@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <base href="../">
+    <title>Smartmap</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="{{asset('logo.png')}}" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link href="{{asset('metronic/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="{{asset('metronic/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('metronic/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+
+    <!--end::Global Stylesheets Bundle-->
+    <link href="{{asset('metronic/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet.css" />
+    <!-- <link href="{{asset('custom/font-awesome-6.4/fa-all.min.css')}}" rel="stylesheet" type="text/css" /> -->
+    <!-- custom  -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet-src.js"></script>
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/docs/examples/libs/leaflet.css" />
+    <!-- <link rel="stylesheet" href="leaflet-search.css" /> -->
+    <!-- <script src="leaflet-search.js"></script> -->
+    <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.draw.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/Leaflet.Draw.Event.js"></script>
+    <link rel="stylesheet" href="https://leaflet.github.io/Leaflet.draw/src/leaflet.draw.css" />
+    <script src="https://leaflet.github.io/Leaflet.draw/src/Toolbar.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/Tooltip.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/GeometryUtil.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LatLngUtil.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/LineUtil.Intersect.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polygon.Intersect.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/Polyline.Intersect.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/ext/TouchEvents.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/DrawToolbar.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Feature.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polyline.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Marker.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.CircleMarker.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Circle.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Polygon.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/draw/handler/Draw.Rectangle.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/EditToolbar.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/EditToolbar.Delete.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/Control.Draw.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Poly.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Marker.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.CircleMarker.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Circle.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.draw/src/edit/handler/Edit.Rectangle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style type="text/css">
+     .div_detail{
+    display: none;position: fixed;z-index: 99!important;
+    /*margin-left: 20px;*/
+    padding: 20px;
+    justify-content: center;
+    align-items: right;
+    right: 5vh;
+    bottom: 5vh
+    }
+
+    .header_detail{
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .top {
+        margin-top: 10px;
+        border-bottom: 1px solid gray
+    }
+    
+    select {
+        width: 100px !important;
+    }
+    
+    textarea {
+        height: 200px !important;
+    }
+    
+    .img_view {
+        width: 300px;
+        height: 200px;
+        float: right;
+    }
+    
+    .hd {
+        display: none;
+    }
+    /*=========================== search =================*/
+    
+    .search {
+        width: 300px;
+        height: 10px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 50px;
+        font-size: 16px;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    .search:focus {
+        width: 300px
+    }
+    /*=========================== search =================*/
+    /*=========================== modal side =================*/
+    
+    #mod_edits {}
+    /*=========================== modal side =================*/
+    
+    h5 {
+        font-size: 14px!important;
+    }
+    
+    #btn_search {
+        margin-top: 20px!important;
+        border-radius: 50%;
+        position: fixed;
+        z-index: 99!important;
+        margin-left: 10px;
+        padding: 20px;
+        justify-content: center
+    }
+    
+    #btn_menu {
+        margin-top: 20px!important;
+        position: fixed;
+        z-index: 98!important;
+        margin-left: 10px;
+        padding: 20px;
+        justify-content: center
+    }
+    
+    .select_wilayah {
+        width: 200px!important
+    }
+    
+   
+    
+    .ml-30 {
+        margin-left: 30px;
+    }
+    /*
+.leaflet-control-zoom{
+    margin-right: 50px!important;
+    margin-bottom: 35px!important;
+}*/
+    
+    .leaflet-control-layers-overlays {
+        display: none;
+    }
+    
+    .li-informasi {
+        color: black;
+        margin-left: 30px;
+        text-decoration: none;
+    }
+    
+    table {
+        display: block;
+        height: 200px;
+        overflow-y: scroll;
+    }
+    
+    #img-logo {
+        height: 30px
+    }
+    
+    .div_image {
+        text-align: center;
+    }
+    
+    .menu-item a {
+        text-decoration: none !important
+    }
+    
+    .hd1 {
+        display: none!important;
+    }
+    
+  
+    </style>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Page-->
+        <div class="page d-flex flex-row flex-column-fluid">
+            <!--begin::Aside-->
+            <div id="kt_aside" class="aside aside-dark aside-hoverable" data-kt-drawer="true" data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+                <!--begin::Brand-->
+                <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+                    <!--begin::Logo-->
+                    <a href="../../demo1/dist/index.html"> <img alt="Logo" src="{{asset('logo.png')}}" class="h-25px logo" /> </a>
+                    <!--end::Logo-->
+                    <!--begin::Aside toggler-->
+                    <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg--><span class="svg-icon svg-icon-1 rotate-180">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.5" d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z" fill="currentColor" />
+                                    <path d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Aside toggler-->
+                </div>
+                <!--end::Brand-->
+                <!--begin::Aside menu-->
+                <div class="aside-menu flex-column-fluid">
+                    <!--begin::Aside Menu-->
+                    <div class="hover-scroll-overlay-y my-5 my-lg-5" id="kt_aside_menu_wrapper" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu" data-kt-scroll-offset="0">
+                        <!--begin::Menu-->
+                        <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500" id="#kt_aside_menu" data-kt-menu="true" data-kt-menu-expand="false">
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion"> <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                <path opacity="0.3" d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z" fill="currentColor"></path>
+                                                <path d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z" fill="currentColor"></path>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span> <span class="menu-title">Tematik</span> <span class="menu-arrow"></span> </span>
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a href="javascript:void(0)" class="menu-link">
+                                            <div>
+                                                <input type="checkbox" class="gaucher hd btn_jenis_tanah" id="5" name="gaucher[]" onchange="processCheck(this)">
+                                                <label id="tmbl_layer_jenis_tanah" class="ml-30 " for="5"> Jenis Tanah</label>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);">
+                                            <div>
+                                                <input type="checkbox" class="gaucher hd btn_jenis_bangunan" id="6" name="gaucher[]" onchange="processCheck(this)">
+                                                <label id="tmbl_layer_jenis_bangunan" class="ml-30 " for="6"> Jenis Bangunan</label>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);">
+                                            <input type="checkbox" class="gaucher hd btn_status_bayar" id="9" name="gaucher[]" onchange="processCheck(this)">
+                                            <label id="tmbl_layer_sts_bayar" class="ml-30 " for="9"> Status Bayar</label>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);">
+                                            <input type="checkbox" class="gaucher hd btn_buku" id="7" name="gaucher[]" onchange="processCheck(this)">
+                                            <label id="tmbl_layer_buku" class="ml-30 " for="7"> Buku</label>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);">
+                                            <input type="checkbox" class="gaucher hd btn_npwp" id="8" name="gaucher[]" onchange="processCheck(this)">
+                                            <label id="tmbl_layer_npwp" class="ml-30 " for="8"> NPWP</label>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);">
+                                            <input type="checkbox" class="gaucher hd btn_znt" id="11" name="gaucher[]" onchange="processCheck(this)">
+                                            <label id="tmbl_layer_znt" class="ml-30 " for="11"> Zona NIlai Tanah</label>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion"> <span class="menu-link">
+                                        <span class="menu-icon">
+                                           <svg fill="currentColor" height="24" width="24" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 487.3 487.3" xml:space="preserve" stroke="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M487.2,69.7c0,12.9-10.5,23.4-23.4,23.4h-322c-12.9,0-23.4-10.5-23.4-23.4s10.5-23.4,23.4-23.4h322.1 C476.8,46.4,487.2,56.8,487.2,69.7z M463.9,162.3H141.8c-12.9,0-23.4,10.5-23.4,23.4s10.5,23.4,23.4,23.4h322.1 c12.9,0,23.4-10.5,23.4-23.4C487.2,172.8,476.8,162.3,463.9,162.3z M463.9,278.3H141.8c-12.9,0-23.4,10.5-23.4,23.4 s10.5,23.4,23.4,23.4h322.1c12.9,0,23.4-10.5,23.4-23.4C487.2,288.8,476.8,278.3,463.9,278.3z M463.9,394.3H141.8 c-12.9,0-23.4,10.5-23.4,23.4s10.5,23.4,23.4,23.4h322.1c12.9,0,23.4-10.5,23.4-23.4C487.2,404.8,476.8,394.3,463.9,394.3z M38.9,30.8C17.4,30.8,0,48.2,0,69.7s17.4,39,38.9,39s38.9-17.5,38.9-39S60.4,30.8,38.9,30.8z M38.9,146.8 C17.4,146.8,0,164.2,0,185.7s17.4,38.9,38.9,38.9s38.9-17.4,38.9-38.9S60.4,146.8,38.9,146.8z M38.9,262.8 C17.4,262.8,0,280.2,0,301.7s17.4,38.9,38.9,38.9s38.9-17.4,38.9-38.9S60.4,262.8,38.9,262.8z M38.9,378.7 C17.4,378.7,0,396.1,0,417.6s17.4,38.9,38.9,38.9s38.9-17.4,38.9-38.9C77.8,396.2,60.4,378.7,38.9,378.7z"></path> </g> </g> </g></svg>
+                                            <!--end::Svg Icon-->
+                                        </span> <span class="menu-title">Informasi</span> <span class="menu-arrow"></span> </span>
+                                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);"> <span id="tmbl_layer_jenis_tanah" class="ml-30 menu-title" for="5">Data Objek Pajak Tanpa Peta </span> </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);"> <span id="tmbl_layer_jenis_bangunan" class="ml-30 menu-title" for="6"> Cetak Masal Info Rinci</span> </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);"> <span id="tmbl_layer_sts_bayar" class="ml-30 menu-title" for="7"> Rekapitulasi Data Info SIN</span> </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link" href="javascript:void(0);"> <span id="tmbl_layer_buku" class="ml-30 menu-title" for="7"> Daftar OP SIN</span> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-kt-menu-trigger="click" class="menu-item menu-accordion"> <span class="menu-link">
+                                        <span class="menu-icon">
+                                            <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm007.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M21 9V11C21 11.6 20.6 12 20 12H14V8H20C20.6 8 21 8.4 21 9ZM10 8H4C3.4 8 3 8.4 3 9V11C3 11.6 3.4 12 4 12H10V8Z" fill="currentColor"></path>
+                                                    <path d="M15 2C13.3 2 12 3.3 12 5V8H15C16.7 8 18 6.7 18 5C18 3.3 16.7 2 15 2Z" fill="currentColor"></path>
+                                                    <path opacity="0.3" d="M9 2C10.7 2 12 3.3 12 5V8H9C7.3 8 6 6.7 6 5C6 3.3 7.3 2 9 2ZM4 12V21C4 21.6 4.4 22 5 22H10V12H4ZM20 12V21C20 21.6 19.6 22 19 22H14V12H20Z" fill="currentColor"></path>
+                                                </svg>
+                                            </span>
+                                <!--end::Svg Icon-->
+                                </span> <span class="menu-title">Pages</span> <span class="menu-arrow"></span> </span>
+                            </div>
+                            <!-- <div class="menu-item">
+                                    <div class="menu-content pt-8 pb-2">
+                                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Crafted</span>
+                                    </div>
+                                </div> --></div>
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Aside Menu-->
+                </div>
+                <!--end::Aside menu-->
+            </div>
+            <!--end::Aside-->
+            <!--begin::Wrapper-->
+            <div class="wrapper d-flex flex-column flex-row-fluid" style="padding-top: 0px!important" id="kt_wrapper">
+                <!--begin::Header-->
+                <div id="kt_header" style="" class="header align-items-stretch">
+                    <!--begin::Container-->
+                    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+                        <!--begin::Aside mobile toggle-->
+                        <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
+                            <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
+                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg--><span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="currentColor" />
+                                            <path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                        </div>
+                        <!--end::Aside mobile toggle-->
+                        <!--begin::Mobile logo-->
+                        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+                            <a href="../../demo1/dist/index.html" class="d-lg-none"> <img alt="Logo" src="{{asset('logo.png')}}" class="h-30px" /> </a>
+                        </div>
+                        <!--end::Mobile logo-->
+                        <!--begin::Wrapper-->
+                        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+                            <!--begin::Navbar-->
+                            <div class="d-flex align-items-stretch" id="kt_header_nav">
+                                <!--begin::Menu wrapper-->
+                                <div class="header-menu align-items-stretch" data-kt-drawer="true" data-kt-drawer-name="header-menu" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_header_menu_mobile_toggle" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch" id="#kt_header_menu" data-kt-menu="true"> </div>
+                                    <!--end::Menu-->
+                                </div>
+                                <!--end::Menu wrapper-->
+                            </div>
+                            <!--end::Navbar-->
+                            <!--begin::Toolbar wrapper-->
+                            <div class="d-flex align-items-stretch flex-shrink-0">
+                                <!--begin::Search-->
+                                <div class="d-flex align-items-stretch ms-1 ms-lg-3">
+                                    <!--begin::Search-->
+                                    <!-- <div id="kt_header_search" class="header-search d-flex align-items-stretch" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="menu" data-kt-menu-trigger="auto" data-kt-menu-overflow="false" data-kt-menu-permanent="true" data-kt-menu-placement="bottom-end"> -->
+                                        <!--begin::Search toggle-->
+                                        <div class="d-flex align-items-center" data-kt-search-element="toggle" id="kt_header_search_toggle">
+                                            <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px">
+                                                        <a href="#" class="" data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg--><span class="svg-icon svg-icon-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                                                        </svg>
+                                                            
+                                                    </span>
+                                                        </a>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                        <!-- </div> -->
+                                        <!--end::Search toggle-->
+                                        <!--begin::Menu-->
+                                        <div data-kt-search-element="content" class="menu menu-sub menu-sub-dropdown p-7 w-325px w-md-500px">
+                                            <!--begin::Wrapper-->
+                                            <div data-kt-search-element="wrapper">
+                                                <!--begin::Form-->
+                                                <form data-kt-search-element="form" class="w-100 position-relative mb-3" autocomplete="off">
+                                                    <!--begin::Icon-->
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg--><span class="svg-icon svg-icon-2 svg-icon-lg-1 svg-icon-gray-500 position-absolute top-50 translate-middle-y ms-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                                                            </svg>
+                                                        </span>
+                                                    <!--end::Svg Icon-->
+                                                    <!--end::Icon-->
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="search-input form-control form-control-flush ps-10" name="search" value="" placeholder="Search..." data-kt-search-element="input" />
+                                                    <!--end::Input-->
+                                                    <!--begin::Spinner--><span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-1" data-kt-search-element="spinner">
+                                                            <span class="spinner-border h-15px w-15px align-middle text-gray-400"></span> </span>
+                                                    <!--end::Spinner-->
+                                                    <!--begin::Reset--><span class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none" data-kt-search-element="clear">
+                                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                            <span class="svg-icon svg-icon-2 svg-icon-lg-1 me-0">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                                                </svg>
+                                                            </span>
+                                                    <!--end::Svg Icon-->
+                                                    </span>
+                                                    <!--end::Reset-->
+                                                    <!--begin::Toolbar-->
+                                                    <div class="position-absolute top-50 end-0 translate-middle-y" data-kt-search-element="toolbar"> </div>
+                                                    <!--end::Toolbar-->
+                                                </form>
+                                                <!--end::Form-->
+                                                <!--begin::Separator-->
+                                                <div class="separator border-gray-200 mb-6"></div>
+                                                <div class="d-flex ">
+                                                    <!--begin::Radio-->
+                                                    <div class="form-check form-check-custom form-check-solid pe-4">
+                                                        <input class="form-check-input" type="radio" value="" name="category_product_count" id="search_nop" checked="checked">
+                                                        <label class="form-check-label" for="search_nop">NOP</label>
+                                                    </div>
+                                                    <div class="form-check form-check-custom form-check-solid pe-4">
+                                                        <input class="form-check-input" type="radio" value="" name="category_product_count" id="search_nama">
+                                                        <label class="form-check-label" for="search_nama">Nama</label>
+                                                    </div>
+                                                    <div class="form-check form-check-custom form-check-solid pe-4">
+                                                        <input class="form-check-input" type="radio" value="" name="category_product_count" id="search_alamat">
+                                                        <label class="form-check-label" for="search_alamat">Alamat</label>
+                                                    </div>
+                                                    <!--end::Radio-->
+                                                </div>
+                                                <!--end::Separator-->
+                                                <!--begin::Recently viewed-->
+                                                <div data-kt-search-element="results" class="d-none mt-10">
+                                                    <!--begin::Items-->
+                                                    <div id="search_result" class="scroll-y  mh-lg-350px">
+                                                        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+                                                            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Karina Clark</span> <span class="fs-7 fw-bold text-muted">31.74.298.390.767.3333.0</span> <span class="fs-7 fw-bold text-muted">Jalan Raya No 99</span> </div>
+                                                        </a>
+                                                        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+                                                            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Wawan Hendrawan</span> <span class="fs-7 fw-bold text-muted">31.74.4348.767.2323.0</span> <span class="fs-7 fw-bold text-muted">Jalan Jalan DI No 77</span> </div>
+                                                        </a>
+                                                        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5 ">
+                                                            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Karina Clark</span> <span class="fs-7 fw-bold text-muted">31.74.298.390.767.3333.0</span> <span class="fs-7 fw-bold text-muted">Jalan Raya No 99</span> </div>
+                                                        </a>
+                                                        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5 ">
+                                                            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Wawan Hendrawan</span> <span class="fs-7 fw-bold text-muted">31.74.4348.767.2323.0</span> <span class="fs-7 fw-bold text-muted">Jalan Jalan DI No 77</span> </div>
+                                                        </a>
+                                                    </div>
+                                                    <div> 
+                                                        <span id="span_load_data" style="display: none" class="badge badge-light text-muted">Load New Data!</span>
+                                                    </div>
+                                                    <!--end::Items-->
+                                                </div>
+                                                <!--end::Recently viewed-->
+                                                <!--begin::Recently viewed-->
+                                                <div class="mb-5" data-kt-search-element="main">
+                                                    <!--begin::Heading-->
+                                                    <!--end::Items-->
+                                                </div>
+                                                <!--end::Recently viewed-->
+                                                <!--begin::Empty-->
+                                                <div data-kt-search-element="empty" class="text-center d-none">
+                                                    <!--begin::Icon-->
+                                                    <div class="pt-10 pb-10">
+                                                        <!--begin::Svg Icon | path: icons/duotune/files/fil024.svg--><span class="svg-icon svg-icon-4x opacity-50">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                    <path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="currentColor" />
+                                                                    <path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="currentColor" />
+                                                                    <rect x="13.6993" y="13.6656" width="4.42828" height="1.73089" rx="0.865447" transform="rotate(45 13.6993 13.6656)" fill="currentColor" />
+                                                                    <path d="M15 12C15 14.2 13.2 16 11 16C8.8 16 7 14.2 7 12C7 9.8 8.8 8 11 8C13.2 8 15 9.8 15 12ZM11 9.6C9.68 9.6 8.6 10.68 8.6 12C8.6 13.32 9.68 14.4 11 14.4C12.32 14.4 13.4 13.32 13.4 12C13.4 10.68 12.32 9.6 11 9.6Z" fill="currentColor" />
+                                                                </svg>
+                                                            </span>
+                                                        <!--end::Svg Icon-->
+                                                    </div>
+                                                    <!--end::Icon-->
+                                                    <!--begin::Message-->
+                                                    <div class="pb-15 fw-bold">
+                                                        <h3 class="text-gray-600 fs-5 mb-2">No result found</h3>
+                                                        <div class="text-muted fs-7">Please try again with a different query</div>
+                                                    </div>
+                                                    <!--end::Message-->
+                                                </div>
+                                                <!--end::Empty-->
+                                            </div>
+                                            <!--end::Wrapper-->
+                                            <!--begin::Preferences-->
+                                            <!--end::Preferences-->
+                                        </div>
+                                        <!--end::Menu-->
+                                    </div>
+                                    <!--end::Search-->
+                                </div>
+                                <!--end::Search-->
+                                <!--begin::Activities-->
+                                <!--end::Notifications-->
+                                <!--begin::Chat-->
+                                <div class="d-flex align-items-center ms-1 ms-lg-3">
+                                    <!--begin::Menu wrapper-->
+                                    <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px " id="kt_drawer_chat_toggle">
+                                        <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg--><span class="svg-icon svg-icon-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                                                    <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor" />
+                                                    <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor" />
+                                                    <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor" />
+                                                </svg>
+                                            </span>
+                                        <!--end::Svg Icon-->
+                                    </div>
+                                    <!--end::Menu wrapper-->
+                                </div>
+                                <!--end::Chat-->
+                                <!--begin::Quick links-->
+                                <!--end::Quick links-->
+                                <!--begin::Theme mode-->
+                                <!--end::Theme mode-->
+                                <!--begin::User menu-->
+                                <!--end::User menu-->
+                                <!--begin::Header menu toggle-->
+                                <!--end::Header menu toggle-->
+                            </div>
+                            <!--end::Toolbar wrapper-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Header-->
+                <!--begin::Content-->
+               
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
+                <!--begin::Container-->
+                <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+                    <!--begin::Copyright-->
+                </div>
+                <!--end::Container-->
+            </div>
+            <!--end::Footer-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+    </div>
+    <!--end::Root-->
+    <!--begin::Drawers-->
+    <!--begin::Activities drawer-->
+    <!--end::Activities drawer-->
+    <!--begin::Chat drawer-->
+    <div id="kt_drawer_chat" class="bg-body w-md-300px" data-kt-drawer="true" data-kt-drawer-name="chat" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
+        <!--begin::Messenger-->
+        <div class="card w-100 rounded-0 border-0" id="kt_drawer_chat_messenger">
+            <!--begin::Card header-->
+            <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::User-->
+                    <div class="d-flex justify-content-center flex-column me-3"> <a href="javascript:void(0)" class="fs-4 fw-bolder text-gray-900 text-hover-primary me-1 mb-2 lh-1">Wilayah</a>
+                        <!--begin::Info-->
+                        <!--end::Info-->
+                    </div>
+                    <!--end::User-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar">
+                    <!--end::Menu-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_chat_close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg--><span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                                </svg>
+                            </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body " id="">
+                <!--begin::Messages-->
+                <select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+                    <option value="1">Semua Kecamatan</option>
+                </select>
+                <select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
+                    <option value="1">Semua Kelurahan/Desa</option>
+                </select>
+                <!--end::Messages-->
+            </div>
+            <!--end::Card body-->
+            <!--begin::Card footer-->
+            <div class="card-footer pt-4" id="kt_drawer_chat_messenger_footer">
+                <!--begin::Input-->
+                <!--end::Toolbar-->
+            </div>
+            <!--end::Card footer-->
+        </div>
+        <!--end::Messenger-->
+    </div>
+
+    <!--begin::Items-->
+    <div id="search_div" class="scroll-y  mh-lg-350px">
+        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Karina Clark</span> <span class="fs-7 fw-bold text-muted">31.74.298.390.767.3333.0</span> <span class="fs-7 fw-bold text-muted">Jalan Raya No 99</span> </div>
+        </a>
+        <a href="javascript:void(0)" class="d-flex text-dark text-hover-primary align-items-center mb-5">
+            <div class="d-flex flex-column justify-content-start fw-bold"> <span class="fs-6 fw-bold">Wawan Hendrawan</span> <span class="fs-7 fw-bold text-muted">31.74.4348.767.2323.0</span> <span class="fs-7 fw-bold text-muted">Jalan Jalan DI No 77</span> </div>
+        </a>
+    </div>
+    <!--end::Items-->
+
+    <div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header pb-0 border-0 justify-content-end">
+                        <!--begin::Close-->
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+                    <!--begin::Modal header-->
+                    <!--begin::Modal body-->
+                    <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                        <!--begin::Content-->
+                        <div class="text-center mb-13">
+                            <h1 class="mb-3">Pencarian</h1>
+                            <div class="text-muted fw-bold fs-5"></div>
+                        </div>
+                        <!--end::Content-->
+                        <!--begin::Search-->
+                        <div id="kt_modal_users_search_handler" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="inline">
+                            <!--begin::Form-->
+                            <form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
+                                <!--begin::Hidden input(Added to disable form autocomplete)-->
+                                <input type="hidden" />
+                                <!--end::Hidden input-->
+                                <!--begin::Icon-->
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                                <span class="svg-icon svg-icon-2 svg-icon-lg-1 svg-icon-gray-500 position-absolute top-50 ms-5 translate-middle-y">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                <!--end::Icon-->
+                                <!--begin::Input-->
+                                <input type="text" class="form-control form-control-lg form-control-solid px-15" name="search" value="" placeholder="" data-kt-search-element="input" />
+                                <!--end::Input-->
+                                <!--begin::Spinner-->
+                                <span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
+                                    <span class="spinner-border h-15px w-15px align-middle text-muted"></span>
+                                </span>
+                                <!--end::Spinner-->
+                                <!--begin::Reset-->
+                                <span class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 me-5 d-none" data-kt-search-element="clear">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                    <span class="svg-icon svg-icon-2 svg-icon-lg-1 me-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <!--end::Reset-->
+                            </form>
+                            <!--end::Form-->
+                            <!--begin::Wrapper-->
+                           
+                            <!--end::Wrapper-->
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+    <script>
+    var n = 1;
+    var html = $('#search_div').html()
+    $(document).ready(function() {
+        // $('#search_result').scroll(function() {
+        $('#search_result').on('scroll', function() {
+            // let div = $(this).get(0);
+            // if(div.scrollTop + div.clientHeight >= div.scrollHeight) {
+            //     $('#search_result').append(html)
+            //     console.log('load')
+            // }
+            var scrollPosition = $(this).scrollTop();
+            var scrollHeight = $(this).prop('scrollHeight');
+            var divHeight = $(this).height();
+            // Check if the scroll position is close to the bottom of the div
+            if(scrollPosition >= scrollHeight - divHeight - 200) {
+                // Load more data
+                $('#span_load_data').css('display','block')
+                setTimeout(() => {
+                    $('#span_load_data').css('display','none')
+                    $('#search_result').append(html)
+                }, "2000");
+            }
+        });
+        $('#searching').keypress(function(e) {
+            if(e.which == 13) {
+                var int = $('#searching').val();
+                if($.isNumeric(int)) {
+                    $.getJSON('http://localhost:8000/getSearchNop/' + int, function(data) {
+                        // data = JSON.parse(data[0]['geom'])['coordinates']
+                        console.log(data)
+                            // var polygon = L.polygon(data, {
+                            //         title: 'test',
+                            //         fillColor: '#F16E60',
+                            //         fillOpacity: 0.5,
+                            //         weight:5,
+                            //         color: '#F16E60',
+                            //         opacity: 0.5,
+                            //         fill: true
+                            //     }).addTo(editableLayers);      
+                            //     map.addLayer(editableLayers);
+                            // $('#1').attr('checked','checked');
+                            // $("#1").trigger("change")
+                    });
+                }
+            }
+        });
+        $("#addForm").submit(function(event) {
+            event.preventDefault(); //prevent default action 
+            var form_data = new FormData(this); //Encode form elements for submission
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{url('save_nop')}}",
+                type: 'POST',
+                data: form_data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+            }).done(function(response) {
+                $('#mod_add').modal('hide')
+                $("#nop_add").val("")
+                map.removeLayer(ORI);
+                $.getJSON('http://localhost:8000/getNop', function(data) {
+                    map.removeLayer(editableLayers);
+                    map.removeLayer(ORI);
+                    ORI = L.geoJson(data, {
+                        onEachFeature: function(feature, layer) {
+                            layer.on("click", function() {
+                                    // alert(selected_draw)
+                                    if(selected_draw == 0) {
+                                        $('#lbl_nop').html(feature.properties.D_NOP)
+                                        $('#lbl_luas').html(feature.properties.D_LUAS)
+                                        $('#modal_detail').modal('show')
+                                        show_op()
+                                    } else {
+                                        var f = feature.geometry.coordinates
+                                            // console.log('iki f')
+                                            // console.log(feature.properties.D_NOP)
+                                        console.log(feature.properties.d_nop)
+                                        $('#nop_edit').val(feature.properties.d_nop)
+                                        $('#nop_edit_old').val(feature.properties.d_nop)
+                                        var arr = [];
+                                        $.each(f[0], function(key, value) {
+                                            // console.log(  value[0] );
+                                            const temp = value[0];
+                                            value[0] = value[1];
+                                            value[1] = temp;
+                                            arr.push(value)
+                                        });
+                                        console.log('iki clik')
+                                            // arr = JSON.stringify(arr)
+                                            // console.log(value);
+                                        editableLayers.clearLayers()
+                                        polyCoords = [arr]
+                                        var polygon = L.polygon(polyCoords, {
+                                            title: 'test',
+                                            fillColor: '#F16E60',
+                                            fillOpacity: 0.5,
+                                            weight: 5,
+                                            color: '#F16E60',
+                                            opacity: 0.5,
+                                            fill: true
+                                        }).addTo(editableLayers);
+                                        map.addLayer(editableLayers);
+                                    }
+                                    // or over a feature property layer.bindTooltip(feature.properties.customTitle)
+                                    // polygon.bindTooltip("My polygon",
+                                    // {permanent: false, direction:"center"}
+                                    // ).openTooltip()
+                                    // arr.push([value[1],value[0]])
+                                })
+                                // layer.bindTooltip('Hi there', {permanent: true}).openTooltip(); 
+                                // feature.properties.D_NOP
+                        },
+                        style: function(feature) {
+                            return {
+                                // fillColor: "transparent",
+                                // fillOpacity: 0.5,
+                                // color: "white",
+                                // dashArray: '3',
+                                // weight: 0.5,
+                                // opacity: 0.7
+                                fillColor: "transparent",
+                                weight: 1,
+                                lineJoin: "miter",
+                                color: "white",
+                            }
+                        }
+                    });
+                    ORI.addTo(map)
+                });
+            });
+        });
+        $("#editForm").submit(function(event) {
+            event.preventDefault(); //prevent default action 
+            var form_data = new FormData(this); //Encode form elements for submission
+            var datas = {
+                "nop": $("#nop_edit").val(),
+                "nop_old": $("#nop_edit_old").val(),
+                "geom": $("#nop_edit_geom").val(),
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{url('maps')}}/" + $('#nop_edit_old').val(),
+                type: "PUT",
+                cache: false,
+                data: datas,
+            }).done(function(response) {
+                console.log(response)
+                $('#mod_edit').modal('hide')
+                map.removeLayer(ORI);
+                $.getJSON('http://localhost:8000/getNop', function(data) {
+                    map.removeLayer(editableLayers);
+                    map.removeLayer(ORI);
+                    //     ORI.addData(data);
+                    //     map.fitBounds(ORI.getBounds());
+                    //     $('#1').attr('checked','checked');
+                    //     $("#1").trigger("change")
+                    //     $("#nop_edit").val("")
+                    ORI = L.geoJson(data, {
+                        onEachFeature: function(feature, layer) {
+                            layer.on("click", function() {
+                                    // alert(selected_draw)
+                                    if(selected_draw == 0) {
+                                        $('#lbl_nop').html(feature.properties.D_NOP)
+                                        $('#lbl_luas').html(feature.properties.D_LUAS)
+                                        $('#modal_detail').modal('show')
+                                        show_op()
+                                    } else {
+                                        var f = feature.geometry.coordinates
+                                            // console.log('iki f')
+                                            // console.log(feature.properties.D_NOP)
+                                        console.log(feature.properties.d_nop)
+                                        $('#nop_edit').val(feature.properties.d_nop)
+                                        $('#nop_edit_old').val(feature.properties.d_nop)
+                                        var arr = [];
+                                        $.each(f[0], function(key, value) {
+                                            // console.log(  value[0] );
+                                            const temp = value[0];
+                                            value[0] = value[1];
+                                            value[1] = temp;
+                                            arr.push(value)
+                                        });
+                                        console.log('iki clik')
+                                            // arr = JSON.stringify(arr)
+                                            // console.log(value);
+                                        editableLayers.clearLayers()
+                                        polyCoords = [arr]
+                                        var polygon = L.polygon(polyCoords, {
+                                            title: 'test',
+                                            fillColor: '#F16E60',
+                                            fillOpacity: 0.5,
+                                            weight: 5,
+                                            color: '#F16E60',
+                                            opacity: 0.5,
+                                            fill: true
+                                        }).addTo(editableLayers);
+                                        map.addLayer(editableLayers);
+                                    }
+                                    // or over a feature property layer.bindTooltip(feature.properties.customTitle)
+                                    // polygon.bindTooltip("My polygon",
+                                    // {permanent: false, direction:"center"}
+                                    // ).openTooltip()
+                                    // arr.push([value[1],value[0]])
+                                })
+                                // layer.bindTooltip('Hi there', {permanent: true}).openTooltip(); 
+                                // feature.properties.D_NOP
+                        },
+                        style: function(feature) {
+                            return {
+                                // fillColor: "transparent",
+                                // fillOpacity: 0.5,
+                                // color: "white",
+                                // dashArray: '3',
+                                // weight: 0.5,
+                                // opacity: 0.7
+                                fillColor: "transparent",
+                                weight: 0.5,
+                                lineJoin: "miter",
+                                color: "white",
+                            }
+                        }
+                    });
+                    ORI.addTo(map)
+                });
+                // ========
+            });
+        });
+    });
+    var nopSearch = L.geoJson(null, {
+        style: function(feature) {
+            // kec = feature.properties.OBJECTID;
+            return {
+                fillColor: "red",
+                fillOpacity: 0.5,
+                color: "red",
+                dashArray: '3',
+                weight: 0.5,
+                opacity: 0.7
+            }
+        }
+    });
+
+    function show_bng() {
+        $('#btn_op').removeClass('hd')
+        $('#btn_bng').addClass('hd')
+        $('#detail_bangunan').removeClass('hd')
+        $('#detail_tanah').addClass('hd')
+    }
+
+    function show_op() {
+        $('#btn_bng').removeClass('hd')
+        $('#btn_op').addClass('hd')
+        $('#detail_tanah').removeClass('hd')
+        $('#detail_bangunan').addClass('hd')
+    }
+    var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        osm = L.tileLayer(osmUrl, {
+            maxZoom: 20,
+            zoom: 13,
+            attribution: osmAttrib
+        }),
+        map = new L.Map('map', {
+            center: new L.LatLng(-7.6357943324575, 112.88264323166)
+        }),
+        // map = new L.Map('map', {center: new L.LatLng(-7.6357943324575, 112.88264323166), zoom: 13,maxZoom:25,position: 'topright'}),
+        drawnItems = L.featureGroup().addTo(map);
+    //======================= Ori ===========================
+    var ORI = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                    // alert(selected_draw)
+                    console.log(feature.properties.d_nop)
+                    if(selected_draw == 0) {
+                        $('#lbl_nop').html(feature.properties.D_NOP)
+                        $('#lbl_luas').html(feature.properties.D_LUAS)
+                        $('#modal_detail').modal('show')
+                        show_op()
+                    } else {
+                        var f = feature.geometry.coordinates
+                            // console.log('iki f')
+                            // console.log(feature.properties.D_NOP)
+                            // console.log(feature.properties.d_nop)
+                        $('#nop_edit').val(feature.properties.d_nop)
+                        $('#nop_edit_old').val(feature.properties.d_nop)
+                        var arr = [];
+                        $.each(f[0], function(key, value) {
+                            // console.log(  value[0] );
+                            const temp = value[0];
+                            value[0] = value[1];
+                            value[1] = temp;
+                            arr.push(value)
+                        });
+                        // console.log('iki clik')
+                        // arr = JSON.stringify(arr)
+                        // console.log(value);
+                        // editableLayers.clearLayers()
+                        polyCoords = [arr]
+                        var polygon = L.polygon(polyCoords, {
+                            title: 'test',
+                            fillColor: '#F16E60',
+                            fillOpacity: 0.5,
+                            weight: 5,
+                            color: '#F16E60',
+                            opacity: 0.5,
+                            fill: true
+                        }).addTo(editableLayers);
+                        map.addLayer(editableLayers);
+                    }
+                    // or over a feature property layer.bindTooltip(feature.properties.customTitle)
+                    // polygon.bindTooltip("My polygon",
+                    // {permanent: false, direction:"center"}
+                    // ).openTooltip()
+                    // arr.push([value[1],value[0]])
+                })
+                // layer.bindTooltip('Hi there', {permanent: true}).openTooltip(); 
+                // layer.bindTooltip(feature.properties.d_nop, { 'permanent': true});
+                // feature.properties.D_NOP
+        },
+        style: function(feature) {
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                title: 'nop',
+                opacity: 0.9,
+                fillColor: 'transparent',
+                weight: 0.5,
+                lineJoin: "miter",
+                color: "white",
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        ORI.addData(data);
+        map.fitBounds(ORI.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= Backgraund ================= 
+    var BG = L.geoJson(null, {
+        style: function(feature) {
+            return {
+                fillColor: "green",
+                fillOpacity: 0.5,
+                color: "green",
+                dashArray: '3',
+                weight: 2,
+                opacity: 0.7,
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getBng', function(data) {
+        BG.addData(data);
+        map.fitBounds(BG.getBounds());
+        if(map.hasLayer(ORI)) {
+            ORI.bringToFront();
+            // alert('ori')
+        };
+    });
+    //============================= BL =========================
+    var BL = L.geoJson(null, {
+        style: function(feature) {
+            // kec = feature.properties.OBJECTID;
+            return {
+                fillColor: "transparent",
+                fillOpacity: 0.5,
+                color: "Blue",
+                dashArray: '3',
+                weight: 2,
+                opacity: 0.7
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getBlok', function(data) {
+        BL.addData(data);
+        map.fitBounds(BL.getBounds());
+        if(map.hasLayer(ORI)) {
+            ORI.bringToFront();
+        };
+    });
+    // ================== TX ===================
+    var TX = L.geoJson(null, {
+        style: function(feature) {
+            // kec = feature.properties.OBJECTID;
+            return {
+                fillColor: "transparent",
+                fillOpacity: 0.5,
+                color: "Red",
+                dashArray: '3',
+                weight: 0.5,
+                opacity: 0.7
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        TX.addData(data);
+        map.fitBounds(TX.getBounds());
+        if(map.hasLayer(ORI)) {
+            ORI.bringToFront();
+        };
+    });
+    googleHybrid = L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+    L.control.layers({
+        "osm": osm,
+        "google hybrid": googleHybrid,
+        "google": L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            attribution: 'google',
+            maxZoom: 30,
+            zoomControl: false
+        }).addTo(map)
+    }, {
+        'drawlayer': drawnItems,
+        // 'Ori' : ORI,
+        // 'BG' : BG,
+        // 'Bl' : BL,
+        // 'Tx' : TX,
+    }, {
+        position: 'topright',
+        collapsed: false
+    }).addTo(map);
+    //======================= Jenis Tanah ====================
+    var jenis_tanah = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                    // alert(selected_draw)
+                    if(selected_draw == 0) {
+                        $('#lbl_nop').html(feature.properties.D_NOP)
+                        $('#lbl_luas').html(feature.properties.D_LUAS)
+                        $('#modal_detail').modal('show')
+                        show_op()
+                    } else {
+                        var f = feature.geometry.coordinates
+                            // console.log('iki f')
+                            // console.log(feature.properties.D_NOP)
+                        console.log(feature.properties.d_nop)
+                        $('#nop_edit').val(feature.properties.d_nop)
+                        $('#nop_edit_old').val(feature.properties.d_nop)
+                        var arr = [];
+                        $.each(f[0], function(key, value) {
+                            // console.log(  value[0] );
+                            const temp = value[0];
+                            value[0] = value[1];
+                            value[1] = temp;
+                            arr.push(value)
+                        });
+                        console.log('iki clik')
+                            // arr = JSON.stringify(arr)
+                            // console.log(value);
+                        editableLayers.clearLayers()
+                        polyCoords = [arr]
+                        var polygon = L.polygon(polyCoords, {
+                            title: 'test',
+                            fillColor: '#F16E60',
+                            fillOpacity: 0.5,
+                            weight: 5,
+                            color: '#F16E60',
+                            opacity: 0.5,
+                            fill: true
+                        }).addTo(editableLayers);
+                        map.addLayer(editableLayers);
+                    }
+                    // or over a feature property layer.bindTooltip(feature.properties.customTitle)
+                    // polygon.bindTooltip("My polygon",
+                    // {permanent: false, direction:"center"}
+                    // ).openTooltip()
+                    // arr.push([value[1],value[0]])
+                })
+                // layer.bindTooltip('Hi there', {permanent: true}).openTooltip(); 
+                // feature.properties.D_NOP
+        },
+        style: function(feature) {
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                opacity: 0.9,
+                fillColor: kolor(feature.properties.d_nop.substring(10, 13)),
+                weight: 0.5,
+                lineJoin: "miter",
+                color: "white",
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        jenis_tanah.addData(data);
+        map.fitBounds(jenis_tanah.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= Buku ====================
+    var buku = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                    // alert(selected_draw)
+                    if(selected_draw == 0) {
+                        $('#lbl_nop').html(feature.properties.D_NOP)
+                        $('#lbl_luas').html(feature.properties.D_LUAS)
+                        $('#modal_detail').modal('show')
+                        show_op()
+                    } else {
+                        var f = feature.geometry.coordinates
+                            // console.log('iki f')
+                            // console.log(feature.properties.D_NOP)
+                        console.log(feature.properties.d_nop)
+                        $('#nop_edit').val(feature.properties.d_nop)
+                        $('#nop_edit_old').val(feature.properties.d_nop)
+                        var arr = [];
+                        $.each(f[0], function(key, value) {
+                            // console.log(  value[0] );
+                            const temp = value[0];
+                            value[0] = value[1];
+                            value[1] = temp;
+                            arr.push(value)
+                        });
+                        console.log('iki clik')
+                            // arr = JSON.stringify(arr)
+                            // console.log(value);
+                        editableLayers.clearLayers()
+                        polyCoords = [arr]
+                        var polygon = L.polygon(polyCoords, {
+                            title: 'test',
+                            fillColor: '#F16E60',
+                            fillOpacity: 0.5,
+                            weight: 5,
+                            color: '#F16E60',
+                            opacity: 0.5,
+                            fill: true
+                        }).addTo(editableLayers);
+                        map.addLayer(editableLayers);
+                    }
+                    // or over a feature property layer.bindTooltip(feature.properties.customTitle)
+                    // polygon.bindTooltip("My polygon",
+                    // {permanent: false, direction:"center"}
+                    // ).openTooltip()
+                    // arr.push([value[1],value[0]])
+                })
+                // layer.bindTooltip('Hi there', {permanent: true}).openTooltip(); 
+                // feature.properties.D_NOP
+        },
+        style: function(feature) {
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                opacity: 0.9,
+                fillColor: kolor(feature.properties.d_nop.substring(10, 13)),
+                weight: 0.5,
+                lineJoin: "miter",
+                color: "white",
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        buku.addData(data);
+        map.fitBounds(buku.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= NPWP ====================
+    var sts_bayar = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                // alert(selected_draw)
+                if(selected_draw == 0) {
+                    $('#lbl_nop').html(feature.properties.D_NOP)
+                    $('#lbl_luas').html(feature.properties.D_LUAS)
+                    $('#modal_detail').modal('show')
+                    show_op()
+                } else {
+                    var f = feature.geometry.coordinates
+                    console.log(feature.properties.d_nop)
+                    $('#nop_edit').val(feature.properties.d_nop)
+                    $('#nop_edit_old').val(feature.properties.d_nop)
+                    var arr = [];
+                    $.each(f[0], function(key, value) {
+                        const temp = value[0];
+                        value[0] = value[1];
+                        value[1] = temp;
+                        arr.push(value)
+                    });
+                    editableLayers.clearLayers()
+                    polyCoords = [arr]
+                    var polygon = L.polygon(polyCoords, {
+                        title: 'test',
+                        fillColor: '#F16E60',
+                        fillOpacity: 0.5,
+                        weight: 5,
+                        color: '#F16E60',
+                        opacity: 0.5,
+                        fill: true
+                    }).addTo(editableLayers);
+                    map.addLayer(editableLayers);
+                }
+            })
+        },
+        style: function(feature) {
+            var colours = 'white'
+            if(map.hasLayer(osm)) {
+                colours = 'black'
+            };
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                opacity: 0.9,
+                fillColor: kolor_two(feature.properties.d_nop.substring(10, 13)),
+                weight: 0.5,
+                lineJoin: "miter",
+                color: colours,
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        sts_bayar.addData(data);
+        map.fitBounds(sts_bayar.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= NPWP ====================
+    var npwp = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                // alert(selected_draw)
+                if(selected_draw == 0) {
+                    $('#lbl_nop').html(feature.properties.D_NOP)
+                    $('#lbl_luas').html(feature.properties.D_LUAS)
+                    $('#modal_detail').modal('show')
+                    show_op()
+                } else {
+                    var f = feature.geometry.coordinates
+                    console.log(feature.properties.d_nop)
+                    $('#nop_edit').val(feature.properties.d_nop)
+                    $('#nop_edit_old').val(feature.properties.d_nop)
+                    var arr = [];
+                    $.each(f[0], function(key, value) {
+                        const temp = value[0];
+                        value[0] = value[1];
+                        value[1] = temp;
+                        arr.push(value)
+                    });
+                    editableLayers.clearLayers()
+                    polyCoords = [arr]
+                    var polygon = L.polygon(polyCoords, {
+                        title: 'test',
+                        fillColor: '#F16E60',
+                        fillOpacity: 0.5,
+                        weight: 5,
+                        color: '#F16E60',
+                        opacity: 0.5,
+                        fill: true
+                    }).addTo(editableLayers);
+                    map.addLayer(editableLayers);
+                }
+            })
+        },
+        style: function(feature) {
+            var colours = 'white'
+            if(map.hasLayer(osm)) {
+                colours = 'black'
+            };
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                opacity: 0.9,
+                fillColor: kolor_two(feature.properties.d_nop.substring(10, 13)),
+                weight: 0.5,
+                lineJoin: "miter",
+                color: colours,
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        npwp.addData(data);
+        map.fitBounds(npwp.getBounds());
+        // $('#modal_detail').modal('show')
+    }); //======================= Znt ====================
+    var znt = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                // alert(selected_draw)
+                if(selected_draw == 0) {
+                    $('#lbl_nop').html(feature.properties.D_NOP)
+                    $('#lbl_luas').html(feature.properties.D_LUAS)
+                    $('#modal_detail').modal('show')
+                    show_op()
+                } else {
+                    var f = feature.geometry.coordinates
+                    console.log(feature.properties.d_nop)
+                    $('#nop_edit').val(feature.properties.d_nop)
+                    $('#nop_edit_old').val(feature.properties.d_nop)
+                    var arr = [];
+                    $.each(f[0], function(key, value) {
+                        const temp = value[0];
+                        value[0] = value[1];
+                        value[1] = temp;
+                        arr.push(value)
+                    });
+                    editableLayers.clearLayers()
+                    polyCoords = [arr]
+                    var polygon = L.polygon(polyCoords, {
+                        title: 'test',
+                        fillColor: '#F16E60',
+                        fillOpacity: 0.5,
+                        weight: 5,
+                        color: '#F16E60',
+                        opacity: 0.5,
+                        fill: true
+                    }).addTo(editableLayers);
+                    map.addLayer(editableLayers);
+                }
+            })
+        },
+        style: function(feature) {
+            var colours = 'white'
+            if(map.hasLayer(osm)) {
+                colours = 'black'
+            };
+            return {
+                // fillColor: "transparent",
+                // fillOpacity: 0.5,
+                // color: "white",
+                // dashArray: '3',
+                // weight: 0.5,
+                opacity: 0.9,
+                fillColor: kolor(feature.properties.d_nop.substring(10, 13)),
+                weight: 0.5,
+                lineJoin: "miter",
+                color: colours,
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        znt.addData(data);
+        map.fitBounds(znt.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= individu ====================
+    var individu = L.geoJson(null, {
+        onEachFeature: function(feature, layer) {
+            layer.on("click", function() {
+                // alert(selected_draw)
+                if(selected_draw == 0) {
+                    $('#lbl_nop').html(feature.properties.D_NOP)
+                    $('#lbl_luas').html(feature.properties.D_LUAS)
+                    $('#modal_detail').modal('show')
+                    show_op()
+                } else {
+                    var f = feature.geometry.coordinates
+                    console.log(feature.properties.d_nop)
+                    $('#nop_edit').val(feature.properties.d_nop)
+                    $('#nop_edit_old').val(feature.properties.d_nop)
+                    var arr = [];
+                    $.each(f[0], function(key, value) {
+                        const temp = value[0];
+                        value[0] = value[1];
+                        value[1] = temp;
+                        arr.push(value)
+                    });
+                    editableLayers.clearLayers()
+                    polyCoords = [arr]
+                    var polygon = L.polygon(polyCoords, {
+                        title: 'test',
+                        fillColor: '#F16E60',
+                        fillOpacity: 0.5,
+                        weight: 5,
+                        color: '#F16E60',
+                        opacity: 0.5,
+                        fill: true
+                    }).addTo(editableLayers);
+                    map.addLayer(editableLayers);
+                }
+            })
+        },
+        style: function(feature) {
+            var colours = 'white'
+            if(map.hasLayer(osm)) {
+                colours = 'black'
+            };
+            return {
+                opacity: 0.9,
+                fillColor: 'orange',
+                weight: 0.5,
+                lineJoin: "miter",
+                color: colours,
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getNop', function(data) {
+        individu.addData(data);
+        map.fitBounds(individu.getBounds());
+        // $('#modal_detail').modal('show')
+    });
+    //======================= jenis bangunan ====================
+    var jenis_bangunan = L.geoJson(null, {
+        style: function(feature) {
+            return {
+                fillColor: kolor(feature.properties.d_nop.substring(10, 13)),
+                fillOpacity: 0.5,
+                color: "green",
+                dashArray: '3',
+                weight: 0.5,
+                opacity: 0.7
+            }
+        }
+    });
+    $.getJSON('http://localhost:8000/getBng', function(data) {
+        jenis_bangunan.addData(data);
+        map.fitBounds(BG.getBounds());
+    });
+    //======================= search ====================
+    //======================= Layer control ====================
+    var str = '<div ">' + '<div class="form-check"><input type="checkbox" class="gaucher form-check-input" id="1" name="gaucher[]" onchange="processCheck(this)"><label id="tmbl_layer_ori" for="1"> Objek Pajak</label></div>' + '<div class="form-check"><input type="checkbox" class="gaucher  form-check-input" id="2" name="gaucher[]" onchange="processCheck(this)"><label for="2"> Bangunan</label></div>' + '<div class="form-check"><input type="checkbox" class="gaucher  form-check-input" id="3" name="gaucher[]" onchange="processCheck(this)"><label for="3"> Blok</label></div>' + '</div>';
+    $('.leaflet-control-layers-list').append(str)
+    var layer1 = ORI;
+    var layer2 = BG;
+    var layer3 = BL;
+    var layer4 = TX;
+    var layer5 = jenis_tanah;
+    var layer6 = jenis_bangunan;
+    var layer7 = buku;
+    var layer8 = npwp;
+    var layer9 = sts_bayar;
+    var layer10 = individu;
+    var layer11 = znt;
+    var layers = [layer1, layer2, layer3, layer4, layer5, layer6, layer7, layer8, layer9, layer10, layer11];
+    var selId = null;
+
+    function processCheck(checkbox) {
+        var checkId = checkbox.id;
+        hide_tematik()
+        if(checkId == 5) {
+            $('#div_jenis_tanah').css('display', 'block')
+        } else {
+            $('#div_jenis_tanah').css('display', 'none')
+        }
+        if(checkId == 6) {
+            $('#div_jenis_bangunan').css('display', 'block')
+            if(!map.hasLayer(ORI) && $('#6').is(':checked')) {
+                $('#tmbl_layer_ori').click()
+            };
+            if($('#6').is(':checked')) {} else {
+                // $('#tmbl_layer_ori').click()
+                // $('#tmbl_layer_ori').click()
+                $('#div_jenis_bangunan').css('display', 'none')
+            }
+        } else {}
+        if(checkId == 7) {
+            $('#div_buku').css('display', 'block')
+        } else {
+            $('#div_buku').css('display', 'none')
+        }
+        if(checkId == 8) {
+            $('#div_npwp').css('display', 'block')
+        } else {
+            $('#div_npwp').css('display', 'none')
+        }
+        if(checkId == 9) {
+            $('#div_status_pembayaran').css('display', 'block')
+        } else {
+            $('#div_status_pembayaran').css('display', 'none')
+        }
+        if(checkId == 10) {
+            $('#div_individu').css('display', 'block')
+        } else {
+            $('#div_individu').css('display', 'none')
+        }
+        if(checkbox.checked) {
+            // if (selId != null) {
+            //   map.removeLayer(layers[selId - 1]);
+            //   document.getElementById(selId).checked = false;
+            // }
+            layers[checkId - 1].addTo(map);
+            selId = checkId;
+        } else {
+            map.removeLayer(layers[checkId - 1]);
+            selId = null;
+            $('#div_jenis_tanah').css('display', 'none')
+            $('#div_buku').css('display', 'none')
+            $('#div_npwp').css('display', 'none')
+            $('#div_status_pembayaran').css('display', 'none')
+            $('#div_individu').css('display', 'none')
+                // $('#div_jenis_bangunan').css('display','none')
+                // if (checkId == 6) {
+                //     $('#tmbl_layer_ori').click()
+                // }
+        }
+        if(map.hasLayer(ORI)) {
+            ORI.bringToFront();
+        };
+    }
+    //======================= Layer control ====================
+    //======================= button lihat ====================
+    var select = L.control();
+    select.onAdd = function(map) {
+        var div = L.DomUtil.create('div', 'searching');
+        div.innerHTML = '<select style="width:100px!important" class="form-control" onchange="select_draw($(this).val())"><option value="0">Lihat</option><option value="1">Edit</option></select>';
+        return div;
+    };
+    select.addTo(map);
+    //======================= button lihat ====================
+    //======================= position zoom  ====================
+    map.removeControl(map.zoomControl);
+    L.control.zoom({
+        position: 'topleft'
+    }).addTo(map);
+   
+    function rem(params) {
+        map.removeControl(drawControl);
+    }
+    //====================== End Button =================
+    //========================== drawing ======================
+    var arrDraw = []
+    let drawControl
+    let editableLayers = new L.FeatureGroup();
+    var selected_draw = 0
+
+    function select_draw(val) {
+        selected_draw = val;
+        if(val == 0) {
+            // $('#modal_detail').addClass('hd')
+            // $('#modal_add').removeClass('hd')
+            map.removeControl(drawControl);
+            map.removeLayer(editableLayers);
+            $('#nop_edit').val("")
+            $('#nop_edit_old').val("")
+        } else {
+            // $('#modal_detail').removeClass('hd')
+            // $('#modal_add').addClass('hd')
+            editableLayers.on("click", function(e) {
+                console.log("editableLayers click");
+                $('#mod_add').modal('show')
+                    //   console.log(e);
+            });
+            editableLayers.on("touchstart", function(e) {
+                console.log("editableLayers touchstart");
+                //   console.log(e);
+            });
+            map.addLayer(editableLayers);
+            drawControl = new L.Control.Draw({
+                position: "topright",
+                draw: {
+                    polyline: true,
+                    polygon: {
+                        allowIntersection: false,
+                        drawError: {
+                            color: "#e1e100",
+                            message: "<strong>Oh snap!<strong> you can't draw that!"
+                        },
+                        shapeOptions: {
+                            color: "blue",
+                            clickable: true
+                        }
+                    },
+                    circle: false,
+                    circlemarker: false,
+                    rectangle: {
+                        shapeOptions: {
+                            clickable: true
+                        }
+                    },
+                    marker: true
+                },
+                edit: {
+                    featureGroup: editableLayers,
+                    remove: true
+                }
+            });
+            map.addControl(drawControl);
+            map.on(L.Draw.Event.CREATED, function(e) {
+                let layer = e.layer;
+                editableLayers.addLayer(layer);
+                layer.on("click", function(e) {
+                    ll = layer.getLatLngs();
+                    console.log('create ' + ll);
+                    // $('#modal_detail1').modal('show')
+                    // return('akaa')
+                    // console.log(e);
+                });
+                layer.on("touchstart", function(e) {
+                    console.log("layer touchstart");
+                    // console.log(e);
+                });
+                editableLayers.on("click", function(e) {
+                    console.log("editableLayers2 click");
+                    // $('#nop_add').val("")
+                    ll = layer.getLatLngs();
+                    console.log('edit ' + ll);
+                    $('#mod_add').modal('show')
+                        // return('aks')
+                });
+                editableLayers.on("touchstart", function(e) {
+                    console.log("editableLayers2 touchstart");
+                    // console.log(e);
+                });
+                editableLayers.removeLayer(e.layer);
+            });
+            map.on('draw:created', function(e) {
+                // var a = JSON.parse(e.layer)
+                arrDraw.push(e.layer.getLatLngs())
+                var geom = e.layer.getLatLngs()
+                    // var geom = editableLayers.getLayers()[0].getLatLngs()
+                console.log(geom)
+                    // =======
+                var str = 'Polygon(('
+                var last = '';
+                $.each(geom[0], function(index, value) {
+                    if(index == 0) {
+                        last = '' + value['lng'] + ' ' + value['lat'] + ''
+                    }
+                    str += '' + value['lng'] + ' ' + value['lat'] + ',';
+                });
+                str.slice(0, -1)
+                str += last + '))'
+                $('#nop_add_geom').val(str)
+                $('#mod_add').modal('show')
+                editableLayers.removeLayer(e.layer);
+                // e.cancel();
+            });
+            map.on('draw:editstop', function(e) {
+                // var a = JSON.parse(e.layer)
+                //     arrDraw.push(e.layer.getLatLngs())
+                console.log(editableLayers.getLayers()[0].getLatLngs())
+                var geom = editableLayers.getLayers()[0].getLatLngs()
+                    // // =======
+                var str = 'Polygon(('
+                var last = '';
+                $.each(geom[0], function(index, value) {
+                    if(index == 0) {
+                        last = '' + value['lng'] + ' ' + value['lat'] + ''
+                    }
+                    str += '' + value['lng'] + ' ' + value['lat'] + ',';
+                });
+                str.slice(0, -1)
+                str += last + '))'
+                $('#nop_edit_geom').val(str)
+                $('#mod_edit').modal('show')
+                    // map.removeLayer(editableLayers);
+                editableLayers.removeLayer(e.layer);
+            });
+        }
+    }
+
+    function cari() {
+        var cari = $('#searching').val();
+        $.getJSON('http://localhost:8000/getSearchNop/' + cari, function(data) {
+            data = JSON.parse(data[0]['geom'])['coordinates']
+            var arr = []
+            var pointZoom = []
+            $.each(data[0], function(key, value) {
+                // console.log(value[0])
+                arr.push([value[1], value[0]])
+                pointZoom = [value[1], value[0]]
+            });
+            if(editableLayers) {
+                map.removeLayer(editableLayers);
+                console.log()
+            }
+            var polygon = L.polygon(arr, {
+                title: 'test',
+                fillColor: 'red',
+                fillOpacity: 0.5,
+                weight: 5,
+                color: 'red',
+                opacity: 0.5,
+                fill: true
+            }).addTo(editableLayers);
+            // ORI.addTo(map)
+            map.addLayer(editableLayers);
+            map.setView(pointZoom);
+            map.setZoom(17);
+            // // $("#1").trigger("change")
+            // // $('#1').attr('checked','checked');
+            //  if (map.hasLayer(ORI)) {
+            //     console.log('active')
+            //     ORI.bringToFront();
+            // };
+            // map.setView(arr[0], 15, { animation: true })
+        });
+        var arr = [];
+    }
+
+    function cari_new(nop) {
+        var cari = $('#searching_text').val();
+        if(cari.length == 0) {
+            return false
+        }
+        if($('#search_nop').is(':checked')) {
+            cari_nop(nop)
+        } else {
+            $('#table_search').css('display', 'block')
+        }
+    }
+
+    function cari_nop(cari) {
+        // var cari = $('#searching_text').val();
+        $.getJSON('http://localhost:8000/getSearchNop/' + cari, function(data) {
+            data = JSON.parse(data[0]['geom'])['coordinates']
+            var arr = []
+            var pointZoom = []
+            $.each(data[0], function(key, value) {
+                // console.log(value[0])
+                arr.push([value[1], value[0]])
+                pointZoom = [value[1], value[0]]
+            });
+            if(editableLayers) {
+                map.removeLayer(editableLayers);
+                console.log()
+            }
+            var polygon = L.polygon(arr, {
+                title: 'test',
+                fillColor: 'red',
+                fillOpacity: 0.5,
+                weight: 5,
+                color: 'red',
+                opacity: 0.5,
+                fill: true
+            }).addTo(editableLayers);
+            // ORI.addTo(map)
+            map.addLayer(editableLayers);
+            map.setZoom(18);
+            setTimeout(function() {
+                map.setView(pointZoom);
+            }, 1000);
+            // // $("#1").trigger("change")
+            // // $('#1').attr('checked','checked');
+            // if (map.hasLayer(ORI)) {
+            //     ORI.bringToFront();
+            // };
+            // map.setView(arr[0], 15, { animation: true })
+        });
+        var arr = [];
+        $('#mod_search').modal('hide')
+    }
+    //======================== End Drawing ====================
+    function kolor(v) {
+        if(v >= 0 && v <= 4) {
+            num = 0
+        } else if(v >= 5 && v <= 9) {
+            num = 1
+        } else if(v >= 10 && v <= 14) {
+            num = 2
+        } else if(v >= 15 && v <= 17) {
+            num = 3
+        } else {
+            num = 4
+        }
+        var arr = ['red', 'blue', 'purple', 'orange', 'aqua']
+            // var num =  Math.floor(Math.random() * 6)
+            // alert(num)
+        return arr[num]
+    }
+
+    function kolor_two(v) {
+        if(v >= 0 && v <= 10) {
+            num = 0
+        } else {
+            num = 1
+        }
+        var arr = ['purple', 'aqua']
+            // var num =  Math.floor(Math.random() * 6)
+            // alert(num)
+        return arr[num]
+    }
+
+    function show_sidebar() {
+        hide_tematik()
+        $('#sidebar').css('display', 'block')
+        $('#sidebar').css('animation', '3s slide-right')
+    }
+
+    function hide_tematik(argument) {
+        if(map.hasLayer(jenis_tanah)) {
+            $('#tmbl_layer_jenis_tanah').click()
+        };
+        if(map.hasLayer(jenis_bangunan)) {
+            $('#tmbl_layer_jenis_bangunan').click()
+        };
+        if(map.hasLayer(buku)) {
+            $('#tmbl_layer_buku').click()
+        };
+        if(map.hasLayer(npwp)) {
+            $('#tmbl_layer_npwp').click()
+        };
+        if(map.hasLayer(sts_bayar)) {
+            $('#tmbl_layer_sts_bayar').click()
+        };
+        if(map.hasLayer(individu)) {
+            $('#tmbl_layer_individu').click()
+        };
+        if(map.hasLayer(znt)) {
+            $('#tmbl_layer_znt').click()
+        };
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+    var hostUrl = "{{asset('metronic')}}";
+    </script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="{{asset('metronic/plugins/global/plugins.bundle.js')}}"></script>
+    <script src="{{asset('metronic/js/scripts.bundle.js')}}"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script src="{{asset('metronic/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+    <!--end::Page Vendors Javascript-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="{{asset('metronic/js/custom/account/settings/signin-methods.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/account/settings/profile-details.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/account/settings/deactivate-account.js')}}"></script>
+    <script src="{{asset('metronic/js/widgets.bundle.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/widgets.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/apps/chat/chat.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/create-app.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/offer-a-deal/type.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/offer-a-deal/details.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/offer-a-deal/finance.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/offer-a-deal/complete.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/offer-a-deal/main.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/two-factor-authentication.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/users-search.js')}}"></script>
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+    <!-- custom -->
+    <!-- <script src="{{asset('custom/font-awesome-6.4/fa-all.min.js')}}"></script> -->
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+        <!--end::Page Vendors Javascript-->
+        <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="{{asset('metronic/js/widgets.bundle.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/widgets.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/apps/chat/chat.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/create-app.js')}}"></script>
+    <script src="{{asset('metronic/js/custom/utilities/modals/users-search.js')}}"></script>
+</body>
+<!--end::Body-->
+
+</html>
